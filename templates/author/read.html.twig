@@ -1,0 +1,22 @@
+<h1>List authors</h1>
+<table border="1">
+<tr>
+    <th>id</th>
+    <th>Username</th>
+    <th>Email</th>
+</tr>
+
+      <tr>  {% for a in author %} </tr>
+        <td>{{ a.id }}</td>
+
+        <td>{{ a.username }}</td>
+
+        <td> {{ a.email }}</td>
+        
+<td><a href="{{ path('delete', {'id': a.id}) }}">delete</a></td>
+<td> <a href="{{ path('author_edit', {'id': a.id}) }}">Edit</a></td>
+
+    {% endfor %}
+
+</table>
+<a href="{{ path('add') }}">add</a>

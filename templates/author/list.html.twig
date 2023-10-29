@@ -1,0 +1,33 @@
+{% if authors is defined and authors|length > 0 %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Picture</th>
+                <th>Email</th>
+                <th>Username</th>
+                <th>Number of Books</th>
+                <th> Details </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% set totalBooks = 0 %}
+            {% for author in authors %}
+                <tr>
+                    <td>{{ author.id }}</td>
+                    <td><img src="{{ asset(author.picture) }}" alt="{{ author.username|upper}}" width="100"></td>
+                    <td>{{ author.email }}</td>
+                    <td>{{ author.username | upper }}</td>
+                    <td>{{ author.nb_books }}</td>
+                    <td><a href="{{path('author_details',{id: author.id})}}"> Details </a></td>
+                </tr>
+                {% set totalBooks = totalBooks + author.nb_books %}
+            {% endfor %}
+        </tbody>
+    </table>
+    <p>Le nombre totale des livres crées par tout les auteurs est : {{ totalBooks }}</p>
+{% else %}
+    <h1>Tableau vide</h1>
+{% endif %}
+<h3> Le nombre d'auteur est: </h3>
+{{authors|length}}
